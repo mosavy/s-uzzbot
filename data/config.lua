@@ -46,8 +46,8 @@ do local _ = {
   moderation = {
     data = "data/moderation.json"
   },
-  sudo_users = {
-    INSERT_YOUR_ID_HERE
+  sudo_users = {187807271
+--    INSERT_YOUR_ID_HERE
   }
 }
 return _
