@@ -34,7 +34,7 @@ local function kick_user(user_id, chat_id)
       if redis:get(hash) then
         redis:del(hash)
       --  reply = str2emoji(':information_source:')..' User ID '..result.from.peer_id..' is now subject to antiflood checks.'
-      --else
+    else
        -- reply = str2emoji(':information_source:')..' User ID '..result.from.peer_id..' is not exempt from antiflood checks.'
       end
       send_large_msg(extra, reply)
@@ -80,7 +80,7 @@ local function kick_user(user_id, chat_id)
               local TIME_CHECK = tonumber(redis:get(hash_timeframe) or 5)
 
               --return str2emoji(':information_source:')..' Anti-flood current parameters:\n'..str2emoji(":no_entry_sign:")..' Kick set at '..NUM_MSG_MAX..' messages over '..TIME_CHECK..' seconds.'
-            --else
+            else
              -- return str2emoji(':information_source:')..' Anti-flood is disabled on this chat.\n'..str2emoji(":point_right:")..' Enable it with !antiflood enable.'
             end
           end
@@ -113,7 +113,7 @@ local function kick_user(user_id, chat_id)
               if redis:get(hash) then
                 redis:del(hash)
                -- return str2emoji(':information_source:')..' User ID '..matches[2]..' is now subject to antiflood checks.'
-             -- else
+              else
               --  return str2emoji(':information_source:')..' User ID '..matches[2]..' is not exempt from antiflood checks.'
               end
             end
@@ -155,7 +155,7 @@ local function kick_user(user_id, chat_id)
             --local text = str2emoji(":exclamation:")..' User '
             if msg.from.username ~= nil then
              -- text = text..' @'..msg.from.username..' ['..user..'] is flooding'
-            --else
+            else
               --text = text..string.gsub(msg.from.print_name, '_', ' ')..' ['..user..'] is flooding'
             end
             local chat = msg.to.id
@@ -180,7 +180,7 @@ local function kick_user(user_id, chat_id)
               if msg.media ~= nil then
                 if msg.media.caption ~= nil then
                   real_text = msg.media.caption
-                --else
+                else
   --                real_text = "[media with no caption]"
                 end
               else
@@ -191,7 +191,7 @@ local function kick_user(user_id, chat_id)
 
               if msg.from.username ~= nil then
                -- snoop_msg('User @'..msg.from.username..' ['..msg.from.id..'] has been found flooding.\nGroup: '..msg.to.print_name..' ['..msg.to.id..']\nText: '..real_text)
-              --else
+              else
                 --snoop_msg('User '..string.gsub(msg.from.print_name, '_', ' ')..' ['..msg.from.id..'] has been found flooding.\nGroup: '..msg.to.print_name..' ['..msg.to.id..']\nText: '..real_text)
               end
               send_msg(receiver, text, ok_cb, nil)
